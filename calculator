@@ -1,0 +1,52 @@
+import 'dart:async';
+
+class Calculator {
+  double add(double a, double b) {
+    return a + b;
+  }
+
+  double subtract(double a, double b) {
+    return a - b;
+  }
+
+  double multiply(double a, double b) {
+    return a * b;
+  }
+
+  double divide(double a, double b) {
+    if (b == 0) {
+      throw ZeroDivisionError("Cannot divide by zero");
+    }
+    return a / b;
+  }
+}
+
+void main() async {
+  final calculator = Calculator();
+
+  try {
+    // Get user input for two numbers
+    print("Enter the first number:");
+    double num1 = double.parse(stdin.readLineSync()!);
+
+    print("Enter the second number:");
+    double num2 = double.parse(stdin.readLineSync()!);
+
+    // Perform calculations
+    double sum = calculator.add(num1, num2);
+    double difference = calculator.subtract(num1, num2);
+    double product = calculator.multiply(num1, num2);
+    double quotient = calculator.divide(num1, num2);
+
+    // Print the results after a 5-second delay
+    print("Calculating...");
+    await Future.delayed(Duration(seconds: 5));
+
+    print("Sum: $sum");
+    print("Difference: $difference");
+    print("Product: $product");
+    print("Quotient: $quotient");
+  } catch (e) {
+    print("Error: $e");
+  }
+}
